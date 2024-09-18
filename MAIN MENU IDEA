@@ -2,12 +2,12 @@ package packMain;
 import java.util.Scanner;
 
 public class MainMenu {
-	private static Scanner inputEnable = new Scanner(System.in);
+	private static Scanner input = new Scanner(System.in);
 	private boolean keyEnable = false;
 	private boolean programEnable = true;
 	public static void main(String[] args) {
 		System.out.println("Welcome to the main menu");
-		int key = inputEnable.nextInt();
+		int key = input.nextInt();
 		switch (key) {
 			//Load people into the network
 			case 1:
