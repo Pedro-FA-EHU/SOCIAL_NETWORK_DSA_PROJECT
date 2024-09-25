@@ -1,0 +1,13 @@
+  	int size = 0; // counter for the number of users in the file
+		String myPath = "E:\PEDRUSKO\ProgramsJavaDSA\SOCIAL_NETWORK_V2\G612498 - User's data.txt";
+    // We will in the future let the admin choose his own pathfile
+		try{
+			File myFilename = new File(myPath);
+			Scanner input2Program = new Scanner (myFilename);
+			String users = ""; //empty string
+			while ( input2Program.hasNext() ){		
+				string2Int = input2Program.nextLine();
+				size++;
+		} catch ( FileNotFoundException e ) {
+				 e.printStackTrace();
+		}
