@@ -1,13 +1,27 @@
-  	int size = 0; // counter for the number of users in the file
-		String myPath = "E:\PEDRUSKO\ProgramsJavaDSA\SOCIAL_NETWORK_V2\G612498 - User's data.txt";
-    // We will in the future let the admin choose his own pathfile
-		try{
-			File myFilename = new File(myPath);
-			Scanner input2Program = new Scanner (myFilename);
-			String users = ""; //empty string
-			while ( input2Program.hasNext() ){		
-				string2Int = input2Program.nextLine();
-				size++;
-		} catch ( FileNotFoundException e ) {
-				 e.printStackTrace();
+	public static void loadUsers() {
+		int MAX = 1000000; //need to state the size of the array. Set a maximum 
+		//but use only the actual elements filled in
+		String[] users = new String[MAX]; // Space allocation for the strings read 
+	  	int size = 0; // counter for the number of users in the file
+		String myPath = "E:\\PEDRUSKO\\ProgramsJavaDSA\\SOCIAL_NETWORK_V2\\G612498 - User's data.txt";
+	    // We will in the future let the admin choose his own pathfile
+			try{
+				File myFilename = new File(myPath);
+				Scanner input2Program = new Scanner (myFilename);
+				String oneUser = "";
+				while ( input2Program.hasNext() ){		
+					oneUser = input2Program.nextLine();
+					users[size] = oneUser;
+					size++;
+				}
+			} catch ( FileNotFoundException e ) {
+					 e.printStackTrace();
+					 System.out.println("Error, file not found");
+			}
+		//Prove that the String is copied succesfully
+		for (int i=1; i < size; i++) {
+			System.out.println(users[i]);
 		}
+		System.out.println(size-1);
+		//There's a header in the file which indicates the attributes of each user
+	}
