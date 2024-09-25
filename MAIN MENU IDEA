@@ -3,25 +3,26 @@ import java.util.Scanner;
 
 public class MainMenu {
 	private static Scanner input = new Scanner(System.in);
-	private boolean keyEnable = false;
-	private boolean programEnable = true;
+	private static boolean programEnable = true;
 	public static void main(String[] args) {
 		System.out.println("Welcome to the main menu");
-		int key = input.nextInt();
-		switch (key) {
-			//Load people into the network
-			case 1:
-			//Load user's cliques
-			case 2:
-			//Print out people
-			case 3:
-			//Search people
-			case 4: //n
-			//Log out
-			case 5:
-			//Others. Insert another number, exception
-			default:
-		}
+		do {
+			int key = input.nextInt();
+			switch (key) {
+				//Load people into the network
+				case 1:
+				//Load user's cliques
+				case 2:
+				//Print out people
+				case 3:
+				//Search people
+				case 4: //n
+				//Log out
+				case 5:
+				//Others. Insert another number, exception
+				default:
+			}
+		} while (programEnable);
+		if (!programEnable) System.out.println("Logged out succesfully");
 	}
-
 }
