@@ -1,0 +1,211 @@
+/* In this doc an ADT interface of List, the type Node and the type LinkedList are included */
+package packList;
+import packExceptions.*;
+
+public interface ListADT<T>{
+	public void insert (T element, int pos) throws AccessOutOfBoundariesException;
+	public T getElement (int pos) throws AccessOutOfBoundariesException, EmptyCollectionException;
+	public int getPosition (T element) throws EmptyCollectionException;
+	public void remove (T element) throws EmptyCollectionException;
+	public T getHead() throws EmptyCollectionException;
+	public T getTail() throws EmptyCollectionException;
+	public boolean contains (T element);
+	public boolean isEmpty();
+	public int size ();
+	public String toString();
+}
+
+package packList;
+
+public class Node<E> {
+	//Attributes
+	private E value;
+	private Node<E> next;
+	//Constructors
+	public Node (E pValue){
+		value = pValue;
+		next = null;
+	}
+	//Getters
+	public E getValue() {
+		return value;
+	}
+	public Node<E> getNext() {
+		return next;
+	}
+	//Setters
+	public void setValue(E pValue) {
+		value = pValue;
+	}
+	public void setNext(Node<E> pNext) {
+		next = pNext;
+	}
+}
+
+package packList;
+import packExceptions.*;
+
+public class LinkedList<T> implements ListADT<T>{
+	//Attributes
+	private int size;
+	private Node<T> head, tail;
+	//Constructor
+	public LinkedList () {
+		size = 0;
+		head = tail = null;
+	}
+	//Implementation of ListADT
+	public void insert (T element, int pos) throws AccessOutOfBoundariesException {
+		Node<T> node = new Node (element);
+		//Node constructor by defect sets next value to null
+		//First case: Empty list
+		if (size == 0) {
+			head = tail = node;
+		//Second case: insert in first place
+		} else if (pos == 0) {
+			node.setNext(head);
+			head = node;
+		//Third case: insert in last place
+		} else if (pos == (size - 1)) {
+			tail.setNext(node);
+			tail = node;
+		//General case: insert anywhere
+		} else {
+			if (pos < 0 || pos >= size) {
+				throw new AccessOutOfBoundariesException();
+			} else {
+				//Node track
+				Node<T> prev = head;
+				Node<T> aux = head.getNext();
+				for (int i = 1; i < pos; i++) {
+					prev = aux;
+					aux = aux.getNext();
+				}
+				//At this point, we got to the required position
+				prev.setNext(node);
+				node.setNext(aux);
+			}
+		}
+		size++;
+	}
+	public T getElement (int pos) throws AccessOutOfBoundariesException, EmptyCollectionException{
+		T result;
+		//First case: Empty list
+		if (size == 0) {
+			throw new EmptyCollectionException();
+		//Second case: the element is located in first place
+		} else if (pos == 0) {
+			result = head.getValue();
+		//Third case: the element is located in last place
+		} else if (pos == (size - 1)) {
+			result = tail.getValue();
+		//General case: the elements is located anywhere
+		} else {
+			if (pos < 0 || pos >= size) {
+				throw new AccessOutOfBoundariesException();
+			} else {
+				//Node track
+				Node<T> aux = head.getNext();
+				for (int i = 1; i < pos; i++) {
+					aux = aux.getNext();
+				}
+				//At this point, we got to the required position
+				result = aux.getValue();
+			}
+		}
+		return result;
+	}
+	public int getPosition (T element) throws EmptyCollectionException {
+		int result = -1; //sentinel value in case element T is not in the list
+		//First case: Empty list
+		if (size == 0) {
+			throw new EmptyCollectionException();
+		//General case
+		} else {
+			Node<T> aux = head;
+			boolean found = false;
+			int i = 0;
+			while ((i < size) && !found) {
+				if (element == aux.getValue()) {
+					found = true;
+					result = i;
+				} else {
+					aux = aux.getNext();
+					i++;
+				}
+			}
+			return result;
+		}
+	}
+	public void remove (T element) throws EmptyCollectionException {
+		int pos = getPosition(element);
+		if (pos >= 0) { //the algorithm will be executed only if the element is found in the list
+			//First case: Empty list
+			if (size == 0) {
+				throw new EmptyCollectionException();
+			//Second case: delete in first place
+			} else if (pos == 0) {
+				head = head.getNext();
+			//General case: delete anywhere, last position included
+			} else {
+				//Node track
+				Node<T> prev = head;
+				Node<T> aux = head.getNext();
+				for (int i = 1; i < pos; i++) {
+					prev = aux;
+					aux = aux.getNext();
+				}
+				//At this point, we got to the required position
+				if (aux.getNext() == null) {
+					tail = prev;
+					tail.setNext(null);
+				} else {
+					prev.setNext(aux.getNext());
+					aux.setNext(null);
+				}
+			}
+			--size;
+		}
+	}
+	public T getHead() throws EmptyCollectionException{
+		if (isEmpty()) {
+			throw new EmptyCollectionException();
+		} else {
+			return head.getValue();
+		}
+	}
+	public T getTail() throws EmptyCollectionException{
+		if (isEmpty()) {
+			throw new EmptyCollectionException();
+		} else {
+			return tail.getValue();
+		}
+	}
+	public boolean contains (T element) {
+		boolean result;
+		try {
+			result = (getPosition(element) >= 0);
+		} catch (EmptyCollectionException e) {
+			return false;
+		}
+		return result;
+	}
+	public boolean isEmpty() {
+		return (size == 0);
+	}
+	public int size() {
+		return size;
+	}
+	public String toString() {
+		String result = "";
+		if (!isEmpty()) {
+			//Node track			
+			Node<T> aux = head;
+			for (int i = 0; i < size; i++) {
+				result += (String) aux.getValue() + ",";
+				aux = aux.getNext();
+			}
+		}
+		return result;
+	}
+}
