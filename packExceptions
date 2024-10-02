@@ -1,0 +1,21 @@
+package packExceptions;
+/* This exception is thrown when an attempt of collection access fails because
+the position we tried to access does not belongs to the indexes range */
+public class AccessOutOfBoundariesException extends Exception{
+	public AccessOutOfBoundariesException() {
+		super();
+	}
+	public AccessOutOfBoundariesException(String message) {
+		super(message);
+	}
+}
+/*This exception is thrown when we want to perform some illegal operation
+on a empty collection */
+public class EmptyCollectionException extends Exception{
+	public EmptyCollectionException() {
+		super();
+	}
+	public EmptyCollectionException(String message) {
+		super(message);
+	}
+}
