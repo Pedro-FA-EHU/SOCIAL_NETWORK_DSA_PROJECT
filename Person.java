@@ -22,6 +22,9 @@ public class Person {
 	// Ejemplo --> birthdate = "4545-545-55" no es correcto.
 	// Otra cuestion a tratar es si el usuario no trabaja por ejemplo. Atributos en esencia vacios.
 	// Id son únicos, se debe verificar primeramente.
+
+	// Obviamente tambien se debe tratar que los atributos sean no vacíos. A excepción de 
+	// studiedat, workplaces,films y friendships .
 	
 	public Person(String pId,String pName,String pLastName,String pBirthDate,String pGender,String pBirthPlace, String pHome, String[] pStudieDat, String[] pWorkPlaces, String[] pFilms, String pGroupcode) {
 
