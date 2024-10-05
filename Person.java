@@ -27,7 +27,7 @@ public class Person {
 	
 	public Person(String pId,String pName,String pLastName,String pBirthDate,String pGender,String pBirthPlace, String pHome, String[] pStudieDat, String[] pWorkPlaces, String[] pFilms, String pGroupcode) {
 
-		
+	// Verificar que id sea único previamente. 	
 		id=pId;
 		name=pName;
 		lastname=pLastName;
