@@ -24,4 +24,9 @@ public class EmptyCollectionException extends Exception{
 /* The following exceptions are 
 thrown in case the atributes of any object of the class Person is created 
 is considered incorrect */
-public class
+public class ExistingId extends Exception{
+	public ExistingId(){
+		super("Already existing ID");
+	}
+}
+
