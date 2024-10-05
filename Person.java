@@ -18,8 +18,7 @@ public class Person {
 
 	// Id son únicos, se debe verificar primeramente.
 
-	// Obviamente tambien se debe tratar que los atributos sean no vacíos. A excepción de 
-	// studiedat, workplaces,films y friendships .
+	// studiedat, workplaces,films y friendships , podrán ser elementos vacíos. 
 
 	// Tratar las excepciones puede ser incoveniente si seguimos criterios distintos a la input data de nuestros compañeros
 	// he mirado y por ejemplo muchos utilizan fechas como "1-1-1920" en vez de "01-01-1920" o intercambiar de posicion meses y dias
