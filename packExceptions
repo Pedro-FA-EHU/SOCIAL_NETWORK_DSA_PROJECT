@@ -19,3 +19,9 @@ public class EmptyCollectionException extends Exception{
 		super(message);
 	}
 }
+
+
+/* The following exceptions are 
+thrown in case the atributes of any object of the class Person is created 
+is considered incorrect */
+public class
