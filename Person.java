@@ -2,7 +2,6 @@ package packProject;
 
 public class Person {
 
-	// id should be unique for each person. Careful with the possible exception.
 	private String id;
 	private String name;
 	private String lastname;
@@ -14,21 +13,22 @@ public class Person {
 	private String[] workplaces;
 	private String[] films;
 	private String[] friendships;
-	// groupcode is it constant? Maybe we use other people data, from other groups.
 	private String groupcode= "G612498";
 	
-	
-	// Se deben tratar las excepciones si los datos introducidos no son correctos aqui :
-	// Ejemplo --> birthdate = "4545-545-55" no es correcto.
-	// Otra cuestion a tratar es si el usuario no trabaja por ejemplo. Atributos en esencia vacios.
+
 	// Id son únicos, se debe verificar primeramente.
 
 	// Obviamente tambien se debe tratar que los atributos sean no vacíos. A excepción de 
 	// studiedat, workplaces,films y friendships .
+
+	// Tratar las excepciones puede ser incoveniente si seguimos criterios distintos a la input data de nuestros compañeros
+	// he mirado y por ejemplo muchos utilizan fechas como "1-1-1920" en vez de "01-01-1920" o intercambiar de posicion meses y dias
+	// vamos a tratar solo las básicas, para evitar posibles errores y supondremos que input sea correcto. Presupongo que todos los 
+	// datos básicos ( id, name, ...) no serán vacíos.
 	
 	public Person(String pId,String pName,String pLastName,String pBirthDate,String pGender,String pBirthPlace, String pHome, String[] pStudieDat, String[] pWorkPlaces, String[] pFilms, String pGroupcode) {
 
-		try {
+		
 		id=pId;
 		name=pName;
 		lastname=pLastName;
@@ -40,10 +40,7 @@ public class Person {
 		workplaces=pWorkPlaces;
 		films=pFilms;
 		groupcode=pGroupcode;
-		}
-		catch() {
-			
-		}
+		
 	}
 	
 	// Getters and Setters can be implemented depending on the Social Network posibilities. Maybe we want to know only someone id.
