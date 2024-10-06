@@ -1,7 +1,10 @@
 package packProject;
 
+import packExceptions.*;
+
 public class Person {
 
+	// id should be unique for each person. Careful with the possible exception.
 	private String id;
 	private String name;
 	private String lastname;
@@ -15,7 +18,7 @@ public class Person {
 	private String[] friendships;
 	private String groupcode= "G612498";
 	
-
+	
 	// Id son únicos, se debe verificar primeramente.
 
 	// studiedat, workplaces,films y friendships , podrán ser elementos vacíos. 
@@ -25,21 +28,41 @@ public class Person {
 	// vamos a tratar solo las básicas, para evitar posibles errores y supondremos que input sea correcto. Presupongo que todos los 
 	// datos básicos ( id, name, ...) no serán vacíos.
 	
-	public Person(String pId,String pName,String pLastName,String pBirthDate,String pGender,String pBirthPlace, String pHome, String[] pStudieDat, String[] pWorkPlaces, String[] pFilms, String pGroupcode) {
-
-	// Verificar que id sea único previamente. 	
-		id=pId;
-		name=pName;
-		lastname=pLastName;
-		birthdate=pBirthDate;
-		gender=pGender;
-		birthplace=pBirthPlace;
-		home=pHome;
-		studiedat=pStudieDat;
-		workplaces=pWorkPlaces;
-		films=pFilms;
-		groupcode=pGroupcode;
+	
+	
+	// Cuidado, diferenciar una string vacía y una string no inicializada(null). Son tratados de forma diferente. Depende como haga la lectura
+	// loadUsers() --> Cambia la excepcion.
+	
+	public Person(String pId,String pName,String pLastName,String pBirthDate,String pGender,String pBirthPlace, String pHome, String[] pStudieDat, String[] pWorkPlaces, String[] pFilms, String pGroupcode) throws EmptyID{
 		
+		if(pId==null) {
+			throw new EmptyID();
+		}
+		/*
+		 * Se debe verificar en la Lista que 
+		else if(List.IDrepeated()) {
+			throw new ExistingID();
+		}
+		*/
+		else {
+			id=pId;
+			name=pName;
+			lastname=pLastName;
+			birthdate=pBirthDate;
+			gender=pGender;
+			birthplace=pBirthPlace;
+			home=pHome;
+			studiedat=pStudieDat;
+			workplaces=pWorkPlaces;
+			films=pFilms;
+			//After reading "friends.txt" --> Relations among users are created in each person atribute "friendships".
+			friendships=null;
+			groupcode=pGroupcode;
+		}
+
+	
+		
+			
 	}
 	
 	// Getters and Setters can be implemented depending on the Social Network posibilities. Maybe we want to know only someone id.
@@ -61,28 +84,52 @@ public class Person {
 		
 		//Array to String Transformation of studiedat
 
+		try {
 		for (int i=0;i<this.studiedat.length;i++) {
 			StudieDat+=this.studiedat[i]+",";
 		}
 		// Replacing last character of the String, "," --> ";" 
 		StudieDat=StudieDat.substring(0,StudieDat.length()-1)+";";
+		}
+		catch(NullPointerException e) {
+			StudieDat=";";
+		}
 		
+		try {
 		for (int i=0;i<this.films.length;i++) {
 			Films+=this.films[i]+",";
 		}
 		Films=Films.substring(0,Films.length()-1)+";";
+		}
+		catch(NullPointerException e) {
+			WorkPlaces=";";
+		}
 		
+		try {
 		for (int i=0;i<this.workplaces.length;i++) {
 			WorkPlaces+=this.workplaces[i]+",";
 		}
 		WorkPlaces=WorkPlaces.substring(0,WorkPlaces.length()-1)+";";
-		
+		}
+		catch(NullPointerException e ) {
+			Films=";";
+		}
+		/*
+		try{
 		for (int i=0;i<this.friendships.length;i++) {
 			Friendships+=this.friendships[i]+",";
 		}
 		Friendships=Friendships.substring(0,Friendships.length()-1)+";";
+		}
+		catch(NullPointerException e){
+			Friendships="";
+		}
+		*/
 		
-		return this.id+" "+this.name+","+this.lastname+","+this.birthdate+","+this.gender+","+this.birthplace+","+this.home+","+StudieDat+WorkPlaces+Films+Friendships+this.groupcode;
+
+		return this.id+","+this.name+","+this.lastname+","+this.birthdate+","+this.gender+","+this.birthplace+","+this.home+","+StudieDat+WorkPlaces+Films+this.groupcode;
+
+		//return this.id+" "+this.name+","+this.lastname+","+this.birthdate+","+this.gender+","+this.birthplace+","+this.home+","+StudieDat+WorkPlaces+Films+Friendships+this.groupcode;
 		
 
 	}
