@@ -24,9 +24,27 @@ public class EmptyCollectionException extends Exception{
 /* The following exceptions are 
 thrown in case the atributes of any object of the class Person is created 
 is considered incorrect */
-public class ExistingId extends Exception{
-	public ExistingId(){
-		super("Already existing ID");
+
+package packExceptions;
+public class ExistingID extends Exception {
+	public ExistingID() {
+		super("Already existing ID. Please change it.");
+	}
+	@Override
+	public String getMessage() {
+		return super.getMessage();
 	}
 }
+package packExceptions;
+public class EmptyID extends Exception{
+	public EmptyID() {
+		super("ID is compulsory.");
+	}
+	@Override
+	public String getMessage() {
+		return super.getMessage();
+	}
+}
+
+
 
