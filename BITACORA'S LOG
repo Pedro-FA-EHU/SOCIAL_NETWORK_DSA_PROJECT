@@ -3,9 +3,10 @@ Create a clique of people and some user's list --> Accomplished
 
 Week 2:
 1. Initial menu --> Accomplished, needs completion of the subprograms we want to call
-2. Take the data from a person and add him/her to the network.
-3. Upload people's data (people.txt) from a file in the directory and add them to the social network. Use the function developed in the previous point. 
-4. Print out a listing to a text file of the people on the network.
+2. Take the data from a person and add him/her to the network. --> In proccess
+3. Upload people's data (people.txt) from a file in the directory and add them to the social network. Use the function developed in the previous point.  --> In proccess
+4. Print out a listing to a text file of the people on the network. --> In proccess
+
 5. The file named friends.txt (friendsFun.txt, friendsClique1.txt, etc.) (see below) has in
 each row two person identifiers that represent a friendship relation. The task is to
 implement an operation that relates them in the network, that is, the relationship
@@ -17,7 +18,7 @@ Mikel34,Xabi112
 Roberto22,Xabi112
 
 Week 3:
-Think about the data structure we must use --> In proccess
+Think about the data structure we must use --> Accomplished
 So we have decided for now use a linked list for structurating the user's profiles
 
 Week 4: 
