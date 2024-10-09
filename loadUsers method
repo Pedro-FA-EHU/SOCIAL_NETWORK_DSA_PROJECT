@@ -1,15 +1,25 @@
 	public static boolean repeatedID(String s) throws ExistingID{
 		boolean repeated=false;
-		Node<Person> aux=userList.getHead1();
-		while(!repeated && aux!=null ) {
-			if(aux.getValue().getId().equals(s)) {
+		int j=0;
+
+		while(!repeated && j<userList.size()) {
+			try {
+			if(userList.getElement(j).getId().equals(s)) {
 				repeated=true;
 				throw new ExistingID();
 			}
 			else {
-				aux=aux.getNext();
+				j++;
+			}
+			}
+			catch(AccessOutOfBoundariesException e) {
+				System.out.println(e.getMessage());
+			}
+			catch(EmptyCollectionException e) {
+				System.out.println(e.getMessage());
 			}
 		}
+	
 		return repeated;
 	}
 
@@ -20,6 +30,7 @@ public static void loadPerson(String user) {
 		// RA -> Repeteable Atributes (studiedat,workplaces,films)
 		// URA -> Unrepeteable Atributes (idperson,name,lastname,...,groupcode)
 		
+		
 		String[] personArrayRA=user.split(";");
 		String[] personArrayURA= personArrayRA[0].split(",");	
 		
@@ -29,11 +40,11 @@ public static void loadPerson(String user) {
 		try {
 		if( repeatedID(personArrayURA[0])==false ) {
 			Person s=new Person(personArrayURA[0],personArrayURA[1],personArrayURA[2],personArrayURA[3],personArrayURA[4],personArrayURA[5],personArrayURA[6],studiedat,personArrayRA[1].split(","),personArrayRA[2].split(","),personArrayRA[3]);
-			userList.insert(s,i);
-			i++;
-			userList.size++;
-			}
+			//Insert in order, pero ocurre algo raro de cojones 
+			// (2)(1)(3)(4)(5)(6)(7) Desconozoco porque ocurre.
+			userList.insert(s,userList.size()-1);
 		
+		}
 		}
 		
 		catch(ExistingID e) {
@@ -46,23 +57,21 @@ public static void loadPerson(String user) {
 			System.out.println("Please, introduce an ID.");
 		}
 		catch( AccessOutOfBoundariesException e) {
-			System.out.println("Hellouda");
+			System.out.println(e.getMessage());
 		}
 	}
 
 
 
 
-
-
-	public static void loadUsers() {
+public static void loadUsers() {
 		
 	    // We will in the future let the admin choose his own pathfile
 		String myPath = "C:\\Users\\sergi\\Downloads\\DataUsers.txt";
 			try{
 				File myFilename = new File(myPath);
 				Scanner input2Program = new Scanner (myFilename);
-				// First line of people.txt is not useful.
+				// First line of people.txt is not useful. Simply 
 				String oneUser=input2Program.nextLine();
 				while ( input2Program.hasNext() ){		
 					oneUser = input2Program.nextLine();
@@ -73,3 +82,20 @@ public static void loadPerson(String user) {
 					 System.out.println("Error, file not found");
 			}
 	}
+
+public static void printUsers() {
+		try {
+		for(int i=0;i<userList.size();i++) {
+			System.out.println(userList.getElement(i).toString());
+			}
+		}
+		catch(EmptyCollectionException e) {
+			System.out.println("There is no Users in the Network.");
+		}
+		catch(AccessOutOfBoundariesException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
+	
