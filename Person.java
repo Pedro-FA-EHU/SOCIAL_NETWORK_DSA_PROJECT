@@ -1,6 +1,6 @@
 package packUser;
+import packList.*;
 
-import packExceptions.*;
 
 public class Person {
 
@@ -16,7 +16,7 @@ public class Person {
 	private String[] workplaces;
 	private String[] films;
 	private String[] friendships;
-	private String groupcode= "G612498";
+	private String groupcode;
 	
 	
 	// Id son únicos, se debe verificar primeramente.
@@ -25,7 +25,7 @@ public class Person {
 
 	// Tratar las excepciones puede ser incoveniente si seguimos criterios distintos a la input data de nuestros compañeros
 	// he mirado y por ejemplo muchos utilizan fechas como "1-1-1920" en vez de "01-01-1920" o intercambiar de posicion meses y dias
-	// Voy a considerar, que los datos introducidos, serán "razonablemente" correctos.
+	//Voy a considerar, que los datos introducidos, serán "razonablemente" correctos.
 	
 	
 	
@@ -34,15 +34,10 @@ public class Person {
 	
 	public Person(String pId,String pName,String pLastName,String pBirthDate,String pGender,String pBirthPlace, String pHome, String[] pStudieDat, String[] pWorkPlaces, String[] pFilms, String pGroupcode) throws EmptyID{
 		
-		if(pId==null) {
+		if(pId=="") {
 			throw new EmptyID();
 		}
-		/*
-		 * Se debe verificar en la Lista que 
-		else if(List.IDrepeated()) {
-			throw new ExistingID();
-		}
-		*/
+
 		else {
 			id=pId;
 			name=pName;
@@ -132,5 +127,9 @@ public class Person {
 		
 
 	}
+	
+
+
+	
 		
 }
