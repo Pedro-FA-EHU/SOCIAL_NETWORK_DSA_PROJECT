@@ -1,27 +1,75 @@
+	public static boolean repeatedID(String s) throws ExistingID{
+		boolean repeated=false;
+		Node<Person> aux=userList.getHead1();
+		while(!repeated && aux!=null ) {
+			if(aux.getValue().getId().equals(s)) {
+				repeated=true;
+				throw new ExistingID();
+			}
+			else {
+				aux=aux.getNext();
+			}
+		}
+		return repeated;
+	}
+
+
+
+
+public static void loadPerson(String user) {
+		// RA -> Repeteable Atributes (studiedat,workplaces,films)
+		// URA -> Unrepeteable Atributes (idperson,name,lastname,...,groupcode)
+		
+		String[] personArrayRA=user.split(";");
+		String[] personArrayURA= personArrayRA[0].split(",");	
+		
+		// Espero que el usuario no haya estudiado en más de 10000 sitios distintos :(
+		String[] studiedat;
+		studiedat=Arrays.copyOfRange(personArrayURA,7, personArrayURA.length);
+		try {
+		if( repeatedID(personArrayURA[0])==false ) {
+			Person s=new Person(personArrayURA[0],personArrayURA[1],personArrayURA[2],personArrayURA[3],personArrayURA[4],personArrayURA[5],personArrayURA[6],studiedat,personArrayRA[1].split(","),personArrayRA[2].split(","),personArrayRA[3]);
+			userList.insert(s,i);
+			i++;
+			userList.size++;
+			}
+		
+		}
+		
+		catch(ExistingID e) {
+			System.out.println(e.getMessage());
+			System.out.println("Please, introduce another ID.");
+		}
+		
+		catch(EmptyID e) {
+			System.out.println(e.getMessage());
+			System.out.println("Please, introduce an ID.");
+		}
+		catch( AccessOutOfBoundariesException e) {
+			System.out.println("Hellouda");
+		}
+	}
+
+
+
+
+
+
 	public static void loadUsers() {
-		int MAX = 1000000; //need to state the size of the array. Set a maximum 
-		//but use only the actual elements filled in
-		String[] users = new String[MAX]; // Space allocation for the strings read 
-	  	int size = 0; // counter for the number of users in the file
-		String myPath = "E:\\PEDRUSKO\\ProgramsJavaDSA\\SOCIAL_NETWORK_V2\\G612498 - User's data.txt";
+		
 	    // We will in the future let the admin choose his own pathfile
+		String myPath = "C:\\Users\\sergi\\Downloads\\DataUsers.txt";
 			try{
 				File myFilename = new File(myPath);
 				Scanner input2Program = new Scanner (myFilename);
-				String oneUser = "";
+				// First line of people.txt is not useful.
+				String oneUser=input2Program.nextLine();
 				while ( input2Program.hasNext() ){		
 					oneUser = input2Program.nextLine();
-					users[size] = oneUser;
-					size++;
+					loadPerson(oneUser);
 				}
 			} catch ( FileNotFoundException e ) {
 					 e.printStackTrace();
 					 System.out.println("Error, file not found");
 			}
-		//Prove that the String is copied succesfully
-		for (int i=1; i < size; i++) {
-			System.out.println(users[i]);
-		}
-		System.out.println(size-1);
-		//There's a header in the file which indicates the attributes of each user
 	}
