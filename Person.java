@@ -1,4 +1,4 @@
-package packProject;
+package packUser;
 
 import packExceptions.*;
 
