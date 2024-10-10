@@ -111,7 +111,7 @@ public static void insertDoubleFriendship(String[] friendships) throws Unregiste
 	public static void printFriendships() {
 		try {
 		for(int i=0;i<userList.size();i++) {
-			System.out.println(userList.getElement(i).getFriendships());
+			System.out.println(userList.getElement(i).getId()+" --> "+userList.getElement(i).getFriendships());
 		}
 		}
 		catch(EmptyCollectionException e) {
@@ -121,5 +121,3 @@ public static void insertDoubleFriendship(String[] friendships) throws Unregiste
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	
