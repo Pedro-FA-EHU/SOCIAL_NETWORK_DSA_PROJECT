@@ -1,4 +1,4 @@
-public static void insertFriends(String[] friendships) throws UnregisteredIDException {
+public static void insertDoubleFriendship(String[] friendships) throws UnregisteredIDException {
 		
 		int i=0;
 		boolean friendFound1=false;
@@ -60,7 +60,7 @@ public static void insertFriends(String[] friendships) throws UnregisteredIDExce
 			try {
 			if(userList.getElement(i).getId().equals(friendships[0])) {
 				friendFound=true;
-				insertFriends(friendships);
+				insertDoubleFriendship(friendships);
 			}
 			else {
 				i++;
