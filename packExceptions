@@ -21,6 +21,21 @@ public class EmptyCollectionException extends Exception{
 }
 
 
+package packUser;
+
+public class UnregisteredIDException extends Exception{
+	public UnregisteredIDException() {
+		super("No person registered on the social network with this ID has been found.");
+	}
+	
+	@Override
+	public String getMessage() {
+		return super.getMessage();
+	}
+
+}
+
+
 /* The following exceptions are 
 thrown in case the atributes of any object of the class Person is created 
 is considered incorrect */
