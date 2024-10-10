@@ -15,7 +15,7 @@ public class Person {
 	private String[] studiedat;
 	private String[] workplaces;
 	private String[] films;
-	private String[] friendships;
+	private String friendships;
 	private String groupcode;
 	
 	
@@ -50,7 +50,7 @@ public class Person {
 			workplaces=pWorkPlaces;
 			films=pFilms;
 			//After reading "friends.txt" --> Relations among users are created in each person atribute "friendships".
-			friendships=null;
+			friendships="";
 			groupcode=pGroupcode;
 		}
 
@@ -66,6 +66,14 @@ public class Person {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public String getFriendships() {
+		return friendships;
+	}
+	
+	public void setFriendships(String s) {
+		friendships=s;
 	}
 	
 	@Override
@@ -127,9 +135,5 @@ public class Person {
 		
 
 	}
-	
-
-
-	
-		
+			
 }
