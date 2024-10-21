@@ -1,0 +1,11 @@
+idperson,name,lastname,birthdate,gender,birthplace,home,studiedat,workplaces,films,groupcode
+Javi,Javier,Frias,7-5-1993,male,Arrasate,Zumaia,Donostia,,ET;Ghost Busters;Batman;G6102
+Iker,Iker,Salmon,19-4-1979,male,Bilbao,Donostia,Donostia,Bilbao;Pamplona,Batman;ET;G6102
+Alejo,Mikel Alejo,Barcina,1-1-1994,male,Ordizia,Ordizia,Donostia,,Toy Story;The Lion King;Shrek;G6102
+Igor,Igor,Cejudo,23-3-1989,female,Donostia,Donostia,Donostia,Donostia;Amsterdam,ET;Titanic;G6102
+ElJonanDeBaraka,Jon Ander,Zorrotzgoiti,30-4-1990,male,Barakaldo,Galdakao,EHU;Bilbao,Donostia;Sex in the City,Fast and Furious;G612498
+AmaiaEITB,Amaia,Urrutia,12-6-1984,female,Laguardia,Vitoria-Gasteiz,Complutense,EHU;Vitoria-Gasteiz;Aisha,Lala Land;G612498
+FodechinchoDeVallecas,Javier,Garcia,25-11-1987,male,Madrid,Vilagarcia de Arousa,Autonoma de Madrid,Vigo;Vigo,A Corunia;Percy Jackson,Get him to the Greek;G612498
+AnonymousEngineer,Mirem,Trujillo,28-2-1998,female,Sant Adria del Besos,Badalona,Autonoma de Barcelona;Barcelona,Sabadell;Marie Curie,Inside Job;G612498
+Juan23,Juan,Francisco,13-3-2003,male,Almeria,Granada,Granada;Granada,Malaga;My Soul to Take;G612498
+Laura131,Laura,Bricenio,4-7-1982,female,San Clemente,Cuenca,Politecnica de Valencia,Complutense;Tarancon,Valencia;Alvin and the Chipmunks;G612498
