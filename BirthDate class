@@ -1,0 +1,66 @@
+package packUser;
+import packEx.*;
+
+public class BirthDate {
+	//Attributes
+	private int day;
+	private int month;
+	private int year;
+	//Getters
+	public int getDay() {
+		return day;
+	}
+	public int getMonth() {
+		return month;
+	}
+	public int getYear() {
+		return year;
+	}
+	//Leap year checking program
+	public boolean isLeapYear(int pYear) {
+		return ( (pYear%400==0) || ((pYear%4==0)&&(pYear%100!=0)) );
+	}
+	//Setters
+	public void setDay(int pDay) throws WrongDateFormatEx{
+		if (
+			(((day >= 1) && (day <= 31)) &&
+					((month==1) || (month==3) || (month==5) || (month==7) 
+						|| (month==8) || (month==10) || (month==12))) ||
+			(((day >= 1) && (day <= 30)) &&
+					((month==4) || (month==6) || (month==9) || (month==11))) ||
+			(((day >= 1) && (day <= 28)) && (month==2) || !isLeapYear(year)) ||
+			(((day >= 1) && (day <= 29)) && (month==2) || isLeapYear(year)) 
+		) {
+			day = pDay;
+		} else {
+			throw new WrongDateFormatEx();
+		}
+	}
+	public void setMonth(int pMonth) throws WrongDateFormatEx{
+		if ((month >=1) && (month <=12)) {
+			month = pMonth;
+		} else {
+			throw new WrongDateFormatEx();
+		}
+	}
+	public void setYear(int pYear) throws WrongDateFormatEx{
+		if (year>=0) {
+			year = pYear;
+		} else {
+			throw new WrongDateFormatEx();
+		}
+	}
+	//Constructor
+	public BirthDate(int pDay, int pMonth, int pYear) {
+		try {
+		setDay(pDay);
+		setMonth(pMonth);
+		setYear(pYear);
+		} catch (WrongDateFormatEx e) {
+			//Set EPOCH 0
+			pDay = 1;
+			pMonth = 1;
+			pYear = 1970;
+		}
+	}
+}
