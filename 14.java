@@ -19,7 +19,7 @@
 	    	                                clique4user.insert(usersList.getElement(k).getId(), clique4user.size());
 	    	                                clique4user.insert(usersList.getElement(w).getId(), clique4user.size());
 
-	    	                                
+	    	                                possibleClique4user.insert(clique4user, possibleClique4user.size());
 	    	                                clique4user=new LinkedList<String>();
 	    	                            }
 	    	                        }
